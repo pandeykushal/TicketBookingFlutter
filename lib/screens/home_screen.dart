@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:gap/gap.dart';
+import 'package:ticket_booking/screens/hotel_screen.dart';
 import 'package:ticket_booking/screens/ticketview.dart';
+import 'package:ticket_booking/screens/utils/app_info_list.dart';
 import 'package:ticket_booking/screens/utils/app_style.dart';
 
 class HomeScreen extends StatelessWidget {
+   
+
   const HomeScreen({super.key});
 
   @override
@@ -96,9 +100,48 @@ class HomeScreen extends StatelessWidget {
         ),
         const Gap(16),
 
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.only(left: 20),
+          child: Row(
+            children: ticketList .map((singleTicket) => TicketView(ticket: singleTicket) ).toList(),
+
+
+          ),
+        ),
+        const Gap(15),
+
+         Container(
+          padding:const EdgeInsets.symmetric(horizontal: 20),
+           child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Hotels',style: Styles.headLineStyle2,),
+                    
+                    InkWell (
+                      onTap: (){
+                        print('you are tapped');
+                      },
+                      child: Text('View all',
+                      style: Styles.textStyle.copyWith(color: Styles.primaryColor),
+                      ),
+                      ),
+                    
+                  ],
+                 ),
+         ),
+         const Gap(15),
+          SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.only(left: 20),
+          child: Row(children: hotelList.map((hotel) =>HotelScreen(hotel: hotel,)).toList(),  
+
+          
+          ),
+          ),
+         
+
         
-        TicketView(),
-      
       ],
       
     ),
